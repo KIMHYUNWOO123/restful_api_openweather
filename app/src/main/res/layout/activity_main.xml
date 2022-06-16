@@ -15,10 +15,15 @@
         >
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_seoul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="서울날씨" />
+        <Button
+            android:id="@+id/button_suwon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="수원날씨" />
 
 
         <TextView

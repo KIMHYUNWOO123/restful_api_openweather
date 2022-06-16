@@ -2,14 +2,10 @@ package com.example.restful_api_practice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.NetworkOnMainThreadException
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.BufferedReader
-import java.io.InputStream
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -19,17 +15,25 @@ class MainActivity : AppCompatActivity() {
 
         textView.text = ""
         //쓰레드 동작
-        button.setOnClickListener {
+        button_seoul.setOnClickListener {
+            textView.text = ""
+            val thread = NetworkThread("seoul")
+            thread.start()
+            thread.join()
 
-            val thread = NetworkThread()
+        }
+        button_suwon.setOnClickListener {
+            textView.text = ""
+            val thread = NetworkThread("suwon")
             thread.start()
             thread.join()
         }
     }
 
-    inner class NetworkThread : Thread(){
+    inner class NetworkThread(data:String) : Thread(){
+        val data = data
         override fun run() {
-            val region = "seoul"
+            val region = data
             val key = "218c73d60692af6965fa11c043c3bf2d"
 
             val site = "http://api.openweathermap.org/data/2.5/weather?q=${region}&APPID=${key}&lang=kr&units=metric"
